@@ -19,10 +19,10 @@ under your account and on your domain name (install `deployctl` in advance).
 In the `examples` directory, you'll find `upload.py`, a script that uploads
 `torus.mtl` and `torus.obj` samples to the 3D viewer channel identified by
 `123`. Use the following HTTP POST URL to upload:
-<http://127.0.0.1:8000/upload/123>.
+<https://clever-toad-26.deno.dev/upload/123>.
 
 After uploading, you can view the models at:
-<http://127.0.0.1:8000/#channel=123>.
+<https://clever-toad-26.deno.dev/#channel=123>.
 
 Subsequent uploads to channel `123` will automatically update in your browser
 unless closed. For better security, create unique channel IDs.
