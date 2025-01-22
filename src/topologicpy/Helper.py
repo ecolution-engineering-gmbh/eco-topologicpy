@@ -766,7 +766,7 @@ class Helper:
                     equal to, or greater than the latest version on PyPI.
             """
             try:
-                # Fetch library data from PyPI
+                # Fetch library resources from PyPI
                 url = f"https://pypi.org/pypi/{library_name}/json"
                 response = requests.get(url)
                 response.raise_for_status()

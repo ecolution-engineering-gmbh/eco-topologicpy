@@ -332,17 +332,17 @@ class Speckle:
             DESCRIPTION.
 
         """
-        # client, stream, branch, description, message, key, data, run = item
+        # client, stream, branch, description, message, key, resources, run = item
         if not run:
             return None
-        # create a base object to hold data
+        # create a base object to hold resources
         base = Base()
         base[key] = data
         transport = ServerTransport(stream.id, client)
-        # and send the data to the server and get back the hash of the object
+        # and send the resources to the server and get back the hash of the object
         obj_id = operations.send(base, [transport])
 
-        # now create a commit on that branch with your updated data!
+        # now create a commit on that branch with your updated resources!
         commit_id = client.commit.create(
             stream.id,
             obj_id,
@@ -422,17 +422,17 @@ class Speckle:
             DESCRIPTION.
 
         """
-        # client, stream, branch, description, message, key, data, run = item
+        # client, stream, branch, description, message, key, resources, run = item
         if not run:
             return None
-        # create a base object to hold data
+        # create a base object to hold resources
         base = Base()
         base[key] = data
         transport = ServerTransport(stream.id, client)
-        # and send the data to the server and get back the hash of the object
+        # and send the resources to the server and get back the hash of the object
         obj_id = operations.send(base, [transport])
 
-        # now create a commit on that branch with your updated data!
+        # now create a commit on that branch with your updated resources!
         commit_id = client.commit.create(
             stream.id,
             obj_id,

@@ -164,7 +164,7 @@ def test_main():
     offF2 = Face.ByOffset(c1, offset=0.5)       # without optional inputs 
     assert Topology.IsInstance(offF2, "Face"), "Face.ByOffset. Should be topologic.Face"
     #  plot geometry
-    # geo1 = Plotly.DataByTopology(offF2)       # create plotly data
+    # geo1 = Plotly.DataByTopology(offF2)       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
  
@@ -195,7 +195,7 @@ def test_main():
     fV2 = Face.ByVertices([tv1, tv2, tv3])                         # with three vertices
     assert Topology.IsInstance(fV2, "Face"), "Face.ByVertices. Should be topologic.Face"
     # plot geometry
-    # face1 = Plotly.DataByTopology(fV2)                           # create plotly data
+    # face1 = Plotly.DataByTopology(fV2)                           # create plotly resources
     # plotfig1 = Plotly.FigureByData(face1)
     # Plotly.Show(plotfig1)
  
@@ -370,7 +370,7 @@ def test_main():
     pf2 = Face.Project(c5, r1, [0,0,-1], 2)                                   # with optional inputs
     assert Topology.IsInstance(pf2, "Face"), "Face.Project. Should be topologic.Face"
     # plot geometry
-    # geo1 = Plotly.DataByTopology(pf2)                                          # create plotly data
+    # geo1 = Plotly.DataByTopology(pf2)                                          # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1)
  
@@ -392,7 +392,7 @@ def test_main():
     StarF2 = Face.Star(v2, 2.5,.8,8, direction=[0, 1, 0], tolerance=0.001)             # with optional inputs
     assert Topology.IsInstance(StarF2, "Face"), "Face.Star. Should be topologic.Face"
     # plot geometry
-    # star1 = Plotly.DataByTopology(StarF1)                                      # create plotly data
+    # star1 = Plotly.DataByTopology(StarF1)                                      # create plotly resources
     # plotfig1 = Plotly.FigureByData(star1)
     # Plotly.Show(plotfig1)
 
@@ -405,7 +405,7 @@ def test_main():
     TraF2 = Face.Trapezoid(v7, 2.7, 1.15, .75, .25, direction= [1, 0, 0])             # with optional inputs
     assert Topology.IsInstance(TraF2, "Face"), "Face.Trapezoid. Should be topologic.Face"
     # plot geometry
-    # tra1 = Plotly.DataByTopology(TraF1)                                       # create plotly data
+    # tra1 = Plotly.DataByTopology(TraF1)                                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(tra1)
     # Plotly.Show(plotfig1)
 
@@ -433,7 +433,7 @@ def test_main():
     to2 = Face.TrimByWire(fV2, tw1, True)                                        # with optional inputs
     assert Topology.IsInstance(to2, "Face"), "Face.TrimByWire. Should be topologic.Face"
     # plot geometry
-    # trim1 = Plotly.DataByTopology(to2)                                         # create plotly data
+    # trim1 = Plotly.DataByTopology(to2)                                         # create plotly resources
     # plotfig1 = Plotly.FigureByData(trim1)
     # Plotly.Show(plotfig1)
  

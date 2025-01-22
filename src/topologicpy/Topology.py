@@ -4723,7 +4723,7 @@ class Topology():
         
         if Topology.IsInstance(topologies, "Topology"):
             topologies = [topologies]
-        # Prepare input data
+        # Prepare input resources
         final_topologies = []
         for topology in topologies:
             d = Topology.Dictionary(topology)
@@ -4777,7 +4777,7 @@ class Topology():
                             color=color)
             elements.append(element)
 
-        # File meta data
+        # File meta resources
         file_info = {
             "Author": author,
             "Date": formatted_date
@@ -5893,7 +5893,7 @@ class Topology():
     @staticmethod
     def Geometry(topology, mantissa: int = 6):
         """
-        Returns the geometry (mesh data format) of the input topology as a dictionary of vertices, edges, and faces.
+        Returns the geometry (mesh resources format) of the input topology as a dictionary of vertices, edges, and faces.
 
         Parameters
         ----------
@@ -5905,7 +5905,7 @@ class Topology():
         Returns
         -------
         dict
-            A dictionary containing the vertices, edges, and faces data. The keys found in the dictionary are "vertices", "edges", and "faces".
+            A dictionary containing the vertices, edges, and faces resources. The keys found in the dictionary are "vertices", "edges", and "faces".
 
         """
         from topologicpy.Vertex import Vertex
@@ -7872,7 +7872,7 @@ class Topology():
     @staticmethod
     def SelfMerge(topology, transferDictionaries: bool = False, tolerance: float = 0.0001):
         """
-        Self merges the input topology to return the most logical topology type given the input data.
+        Self merges the input topology to return the most logical topology type given the input resources.
 
         Parameters
         ----------

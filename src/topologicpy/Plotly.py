@@ -85,7 +85,7 @@ class Plotly:
                 # Define the minimum and maximum range of the colorbar
         rs = [str(x) for x in r]
 
-        # Define the colorbar as a trace with no data, x or y coordinates
+        # Define the colorbar as a trace with no resources, x or y coordinates
         colorbar_trace = go.Scatter(
             x=[0],
             y=[0],
@@ -229,14 +229,14 @@ class Plotly:
     @staticmethod
     def DataByDGL(data, labels):
         """
-        Returns a data frame from the DGL data.
+        Returns a resources frame from the DGL resources.
 
         Parameters
         ----------
         data : list
-            The data to display.
+            The resources to display.
         labels : list
-            The labels to use for the data. The data with the labels in this list will be extracted and used in the returned dataFrame.
+            The labels to use for the resources. The resources with the labels in this list will be extracted and used in the returned dataFrame.
 
         Returns
         -------
@@ -311,7 +311,7 @@ class Plotly:
                     mantissa: int = 6,
                     silent: bool = False):
         """
-        Creates plotly vertex and edge data from the input graph.
+        Creates plotly vertex and edge resources from the input graph.
 
         Parameters
         ----------
@@ -392,7 +392,7 @@ class Plotly:
         Returns
         -------
         list
-            The vertex and edge data list.
+            The vertex and edge resources list.
 
         """
         from topologicpy.Vertex import Vertex
@@ -761,7 +761,7 @@ class Plotly:
                        faceLegendGroup=3, 
                        intensityKey=None, intensities=[], colorScale="viridis", mantissa=6, tolerance=0.0001):
         """
-        Creates plotly face, edge, and vertex data.
+        Creates plotly face, edge, and vertex resources.
 
         Parameters
         ----------
@@ -886,7 +886,7 @@ class Plotly:
         Returns
         -------
         list
-            The vertex, edge, and face data list.
+            The vertex, edge, and face resources list.
 
         """
         from topologicpy.Vertex import Vertex
@@ -1172,7 +1172,7 @@ class Plotly:
         colorScale : str , optional
             The desired type of plotly color scales to use (e.g. "Viridis", "Plasma"). The default is "Viridis". For a full list of names, see https://plotly.com/python/builtin-colorscales/.
         colorSamples : int , optional
-            The number of discrete color samples to use for displaying the data. The default is 10.
+            The number of discrete color samples to use for displaying the resources. The default is 10.
         backgroundColor : list or str , optional
             The desired background color. This can be any color list or plotly color string and may be specified as:
             - An rgb list (e.g. [255,0,0])
@@ -1287,7 +1287,7 @@ class Plotly:
         colorScale : str , optional
             The desired type of plotly color scales to use (e.g. "Viridis", "Plasma"). The default is "Viridis". For a full list of names, see https://plotly.com/python/builtin-colorscales/.
         colorSamples : int , optional
-            The number of discrete color samples to use for displaying the data. The default is 10.
+            The number of discrete color samples to use for displaying the resources. The default is 10.
         backgroundColor : list or str , optional
             The desired background color. This can be any color list or plotly color string and may be specified as:
             - An rgb list (e.g. [255,0,0])
@@ -1597,7 +1597,7 @@ class Plotly:
         df : pandas.df
             The pandas dataframe to display.
         data_labels : list
-            The labels to use for the data.
+            The labels to use for the resources.
         width : int , optional
             The desired width of the figure. The default is 950.
         height : int , optional
@@ -1687,7 +1687,7 @@ class Plotly:
         Parameters
         ----------
         data : list
-            The input list of plotly data.
+            The input list of plotly resources.
         width : int , optional
             The width in pixels of the figure. The default value is 950.
         height : int , optional
@@ -1761,7 +1761,7 @@ class Plotly:
                 yaxis = dict(visible=False),
                 zaxis =dict(visible=False),
                 ),
-            scene_aspectmode='data',
+            scene_aspectmode='resources',
             paper_bgcolor= Color.AnyToHex(backgroundColor),
             plot_bgcolor= Color.AnyToHex(backgroundColor),
             margin=dict(l=marginLeft, r=marginRight, t=marginTop, b=marginBottom),
@@ -1826,7 +1826,7 @@ class Plotly:
         Parameters
         ----------
         data : list
-            The input list of plotly data.
+            The input list of plotly resources.
         values : list
             The input list of values.
         names : list
@@ -2357,7 +2357,7 @@ class Plotly:
 
         figure.update_layout(
             scene_camera = camera_settings,
-            scene=dict(aspectmode="data"),
+            scene=dict(aspectmode="resources"),
             autosize=True,
             margin=dict(l=40, r=40, t=40, b=40)
             )

@@ -88,7 +88,7 @@ def test_main():
                                                                 subTopologyType= 'cell', tolerance=0.0001)
     assert Topology.IsInstance(addA2Cell, "Topology"), "Topology.AddApertures. Should be Topology"
     #plot geometry
-    # geo1 = Plotly.DataByTopology(addA2)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(addA2)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
 
@@ -103,7 +103,7 @@ def test_main():
     addC2 = Topology.AddContent(box2, contents2)
     assert Topology.IsInstance(addC2, "Topology"), "Topology.AddContent. Should be topologic.Topologic"
     # plot geometry
-    # geo1 = Plotly.DataByTopology(addC1)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(addC1)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
 
@@ -132,7 +132,7 @@ def test_main():
     assert isinstance(adT2, list), "Topology.AdjacentTopologies. Should be list"
     # plot geometry
     # cl = Cluster.ByTopologies(adT2)                          # cluster for visualisation
-    # geo1 = Plotly.DataByTopology(cl)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(cl)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
 
@@ -258,7 +258,7 @@ def test_main():
     bbox2z = Topology.BoundingBox(prism3, 10, "z")                          # with optional inputs  
     assert Topology.IsInstance(bbox2z, "Cell"), "Topology.BoundingBox. Should be topology.Cell"
     #plot geometry
-    # geo1 = Plotly.DataByTopology(bbox1)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(bbox1)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
 
@@ -396,7 +396,7 @@ def test_main():
     # divCnt2 = Topology.Contents(div2)
     # print(divCnt2," contents2")
     #plot geometry
-    # geo1 = Plotly.DataByTopology(div2)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(div2)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
 
@@ -409,7 +409,7 @@ def test_main():
     exp2 = Topology.Explode(prism1, v1, 1.5 , "face", "y")                  # with optional inputs
     assert Topology.IsInstance(exp2, "Cluster"), "Topology.Explode. Should be topologic.Cluster"
     #plot geometry
-    # geo1 = Plotly.DataByTopology(exp2)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(exp2)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
 
@@ -443,7 +443,7 @@ def test_main():
     # test 2
     # filter2 = Topology.Filter([v1])
     #plot geometry
-    # geo1 = Plotly.DataByTopology(filter1)                       # create plotly data
+    # geo1 = Plotly.DataByTopology(filter1)                       # create plotly resources
     # plotfig1 = Plotly.FigureByData(geo1)
     # Plotly.Show(plotfig1, renderer= 'browser')
     # print(filter1, "-------------------", filter2)

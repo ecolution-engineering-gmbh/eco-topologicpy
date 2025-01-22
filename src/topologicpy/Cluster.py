@@ -292,7 +292,7 @@ class Cluster():
             The keys in the embedded dictionaries in the topologies. If specified, the values at these keys will be added to the dimensions to be clustered. The values must be numeric. If you wish the x, y, z location to be included,
             make sure the keys list includes "X", "Y", and/or "Z" (case insensitive). The default is ["x", "y", "z"]
         epsilon : float , optional
-            The maximum radius around a data point within which other points are considered to be part of the same sense region (cluster). The default is 0.5. 
+            The maximum radius around a resources point within which other points are considered to be part of the same sense region (cluster). The default is 0.5.
         minSamples : int , optional
             The minimum number of points required to form a dense region (cluster). The default is 2.
 
@@ -311,7 +311,7 @@ class Cluster():
             DBSCAN clustering algorithm for 3D points.
 
             Parameters:
-            - data: NumPy array, input data points with X, Y, and Z coordinates.
+            - resources: NumPy array, input resources points with X, Y, and Z coordinates.
             - eps: float, maximum distance between two samples for one to be considered as in the neighborhood of the other.
             - min_samples: int, the number of samples (or total weight) in a neighborhood for a point to be considered as a core point.
 
@@ -354,8 +354,8 @@ class Cluster():
             Expand the cluster around a core point for 3D points.
 
             Parameters:
-            - labels: NumPy array, cluster labels for each data point.
-            - dists: NumPy array, pairwise distances between data points.
+            - labels: NumPy array, cluster labels for each resources point.
+            - dists: NumPy array, pairwise distances between resources points.
             - point_index: int, index of the core point.
             - neighbors: NumPy array, indices of neighbors.
             - cluster_id: int, current cluster ID.
@@ -897,7 +897,7 @@ class Cluster():
             centroids = random.sample(data, k)
 
             for _ in range(maxIterations):
-                # Assign each data point to the nearest centroid
+                # Assign each resources point to the nearest centroid
                 clusters = [[] for _ in range(k)]
                 clusters_v = [[] for _ in range(k)]
                 for i, point in enumerate(data):

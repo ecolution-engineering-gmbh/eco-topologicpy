@@ -431,7 +431,7 @@ class ANN():
         
         Returns
         -------
-        sklearn.utils._bunch.Bunch
+        sklearn.modules._bunch.Bunch
             The created dataset.
 
         """
@@ -474,7 +474,7 @@ class ANN():
         
         Returns
         -------
-        sklearn.utils._bunch.Bunch
+        sklearn.modules._bunch.Bunch
             The created dataset.
         """
         # Load dataset
@@ -520,11 +520,11 @@ class ANN():
         y : list
             The list of targets.
         testRatio : float , optional
-            The ratio of the dataset to reserve as unseen data for testing. The default is 0.3
+            The ratio of the dataset to reserve as unseen resources for testing. The default is 0.3
         randomState : int , optional
             The randomState parameter is used to ensure reproducibility of the results. When you set the randomState parameter to a specific integer value,
-            it controls the shuffling of the data before splitting it into training and testing sets.
-            This means that every time you run your code with the same randomState value and the same dataset, you will get the same split of the data.
+            it controls the shuffling of the resources before splitting it into training and testing sets.
+            This means that every time you run your code with the same randomState value and the same dataset, you will get the same split of the resources.
             The default is 42 which is just a randomly picked integer number. Specify None for random sampling.
 
         Returns
@@ -568,14 +568,14 @@ class ANN():
             The desired title for the dataset. The default is "Untitled".
         taskType : str , optional
             The desired task type. This can be either 'classification' or 'regression' (case insensitive).
-            Classification is a type of supervised learning where the model is trained to predict categorical labels (classes) from input data.
-            Regression is a type of supervised learning where the model is trained to predict continuous numerical values from input data.
+            Classification is a type of supervised learning where the model is trained to predict categorical labels (classes) from input resources.
+            Regression is a type of supervised learning where the model is trained to predict continuous numerical values from input resources.
         testRatio : float , optional
             The split ratio between training and testing. The default is 0.3. This means that
-            70% of the data will be used for training/validation and 30% will be reserved for testing as unseen data.
+            70% of the resources will be used for training/validation and 30% will be reserved for testing as unseen resources.
         validationRatio : float , optional
             The split ratio between training and validation. The default is 0.2. This means that
-            80% of the validation data (left over after reserving test data) will be used for training and 20% will be used for validation.
+            80% of the validation resources (left over after reserving test resources) will be used for training and 20% will be used for validation.
         hiddenLayers : list , optional
             The number of hidden layers and the number of nodes in each layer.
             If you wish to have 3hidden layers with 8 nodes in the first
@@ -595,15 +595,15 @@ class ANN():
             If set to True, the training will stop if the validation loss does not improve after a certain number of epochs defined by patience. The default is True.
         randomState : int , optional
             The randomState parameter is used to ensure reproducibility of the results. When you set the randomState parameter to a specific integer value,
-            it controls the shuffling of the data before splitting it into training and testing sets.
-            This means that every time you run your code with the same randomState value and the same dataset, you will get the same split of the data.
+            it controls the shuffling of the resources before splitting it into training and testing sets.
+            This means that every time you run your code with the same randomState value and the same dataset, you will get the same split of the resources.
             The default is 42 which is just a randomly picked integer number. Specify None for random sampling.
         crossValidationType : str , optional
             The desired type of cross-validation. This can be one of 'holdout' or 'k-fold'. The default is 'holdout'
         kFolds : int , optional
             The number of splits (folds) to use if K-Fold cross validation is selected. The default is 5.
         interval : int , optional
-            The desired epoch interval at which to report and save metrics data. This must be less than the total number of epochs. The default is 1.
+            The desired epoch interval at which to report and save metrics resources. This must be less than the total number of epochs. The default is 1.
         mantissa : int , optional
             The desired length of the mantissa. The default is 6.
         
@@ -773,7 +773,7 @@ class ANN():
     @staticmethod
     def ModelData(model):
         """
-        Returns the data of the model
+        Returns the resources of the model
 
         Parameters
         ----------
@@ -783,8 +783,8 @@ class ANN():
         Returns
         -------
         dict
-            A dictionary containing the model data. The keys in the dictionary are:
-            'epochs' (list of epoch numbers at which metrics data was collected)
+            A dictionary containing the model resources. The keys in the dictionary are:
+            'epochs' (list of epoch numbers at which metrics resources was collected)
             'training_loss' (LOSS)
             'validation_loss' (VALIDATION LOSS)
             'training_accuracy' (ACCURACY for classification tasks only)
@@ -821,7 +821,7 @@ class ANN():
         ----------
         hyperparameters : dict
             The hyperparameters dictionary. You can create one using ANN.Hyperparameters() or, if you are using a sample Dataset, you can get it from ANN.HyperParametersBySampleName.
-        dataset : sklearn.utils._bunch.Bunch
+        dataset : sklearn.modules._bunch.Bunch
             The input dataset.
                
         Returns
@@ -857,7 +857,7 @@ class ANN():
         ----------
         hyperparameters : dict
             The hyperparameters dictionary. You can create one using ANN.Hyperparameters() or, if you are using a sample Dataset, you can get it from ANN.HyperParametersBySampleName.
-        dataset : sklearn.utils._bunch.Bunch
+        dataset : sklearn.modules._bunch.Bunch
             The input dataset.
        
         Returns
@@ -922,7 +922,7 @@ class ANN():
     @staticmethod
     def Figures(model, width=900, height=600, template="plotly", colorScale='viridis', colorSamples=10):
         """
-        Creates Plotly Figures from the model data. For classification tasks this includes
+        Creates Plotly Figures from the model resources. For classification tasks this includes
         a confusion matrix, loss, and accuracy figures. For regression tasks this includes
         loss and MAE figures.
 
@@ -942,7 +942,7 @@ class ANN():
         colorScale : str , optional
             The desired type of plotly color scales to use (e.g. "viridis", "plasma"). The default is "viridis". For a full list of names, see https://plotly.com/python/builtin-colorscales/.
         colorSamples : int , optional
-            The number of discrete color samples to use for displaying the data. The default is 10.
+            The number of discrete color samples to use for displaying the resources. The default is 10.
        
         Returns
         -------

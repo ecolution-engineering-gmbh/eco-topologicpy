@@ -162,7 +162,7 @@ class _Hparams:
             An int value in the range of 2 to X to define the number of k-folds for cross-validation. Default is 5.
         split : list
             A list of three item in the range of 0 to 1 to define the split of train,
-            validate, and test data. A default value of [0.8,0.1,0.1] means 80% of data will be
+            validate, and test resources. A default value of [0.8,0.1,0.1] means 80% of resources will be
             used for training, 10% will be used for validation, and the remaining 10% will be used for training
         hl_widths : list
             List of hidden neurons for each layer such as [32] will mean
@@ -176,7 +176,7 @@ class _Hparams:
             to define a set of samples to be used for training and testing in 
             each step of an epoch
         epochs : int
-            An epoch means training the neural network with all the training data for one cycle. In an epoch, we use all of the data exactly once. A forward pass and a backward pass together are counted as one pass
+            An epoch means training the neural network with all the training resources for one cycle. In an epoch, we use all of the resources exactly once. A forward pass and a backward pass together are counted as one pass
         use_GPU : use the GPU. Otherwise, use the CPU
 
         Returns
@@ -550,7 +550,7 @@ class _GraphRegressorHoldout:
 
         # Run the training loop for defined number of epochs
         for _ in tqdm(range(self.hparams.epochs), desc='Epochs', total=self.hparams.epochs, leave=False):
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for batched_graph, labels in tqdm(self.train_dataloader, desc='Training', leave=False):
                 # Make sure the model is in training mode
                 self.model.train()
@@ -737,7 +737,7 @@ class _GraphRegressorKFold:
             train_subsampler = torch.utils.data.SubsetRandomSampler(train_ids)
             validate_subsampler = torch.utils.data.SubsetRandomSampler(validate_ids)
 
-            # Define data loaders for training and testing data in this fold
+            # Define resources loaders for training and testing resources in this fold
             self.train_dataloader = GraphDataLoader(self.trainingDataset, sampler=train_subsampler, 
                                                 batch_size=self.hparams.batch_size,
                                                 drop_last=False)
@@ -751,7 +751,7 @@ class _GraphRegressorKFold:
             best_rmse = np.inf
             # Run the training loop for defined number of epochs
             for _ in tqdm(range(self.hparams.epochs), desc='Epochs', total=self.hparams.epochs, initial=1, leave=False):
-                # Iterate over the DataLoader for training data
+                # Iterate over the DataLoader for training resources
                 for batched_graph, labels in tqdm(self.train_dataloader, desc='Training', leave=False):
                     # Make sure the model is in training mode
                     self.model.train()
@@ -924,7 +924,7 @@ class _GraphClassifierHoldout:
         for _ in tqdm(range(self.hparams.epochs), desc='Epochs', initial=1, leave=False):
             temp_loss_list = []
             temp_acc_list = []
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for batched_graph, labels in tqdm(self.train_dataloader, desc='Training', leave=False):
                 # Make sure the model is in training mode
                 self.model.train()
@@ -1157,7 +1157,7 @@ class _GraphClassifierKFold:
             train_subsampler = torch.utils.data.SubsetRandomSampler(train_ids)
             validate_subsampler = torch.utils.data.SubsetRandomSampler(validate_ids)
 
-            # Define data loaders for training and testing data in this fold
+            # Define resources loaders for training and testing resources in this fold
             self.train_dataloader = GraphDataLoader(self.trainingDataset, sampler=train_subsampler, 
                                                 batch_size=self.hparams.batch_size,
                                                 drop_last=False)
@@ -1172,7 +1172,7 @@ class _GraphClassifierKFold:
                 temp_loss_list = []
                 temp_acc_list = []
 
-                # Iterate over the DataLoader for training data
+                # Iterate over the DataLoader for training resources
                 for batched_graph, labels in tqdm(self.train_dataloader, desc='Training', leave=False):
                     if batched_graph.ndata[self.node_attr_key].dim() == 1:
                         batched_graph.ndata[self.node_attr_key] = torch.unsqueeze(batched_graph.ndata[self.node_attr_key], 1)
@@ -1409,7 +1409,7 @@ class _NodeClassifier:
             temp_train_acc_list = []
             temp_val_acc_list = []
             temp_test_acc_list = []
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for batched_graph, labels in tqdm(self.train_dataloader, desc='Training', leave=False):
                 features = batched_graph.ndata["feat"]
                 labels = batched_graph.ndata["label"]
@@ -1770,7 +1770,7 @@ class DGL:
         predicted : list
             The input list of predicts labels.
         normalized : bool , optional
-            If set to True, the returned data will be normalized (proportion of 1). Otherwise, actual numbers are returned. The default is False.
+            If set to True, the returned resources will be normalized (proportion of 1). Otherwise, actual numbers are returned. The default is False.
 
         Returns
         -------
@@ -2025,7 +2025,7 @@ class DGL:
     @staticmethod
     def GraphEdgeData(graph):
         """
-        Returns the edge data found in the input DGL graph
+        Returns the edge resources found in the input DGL graph
         Parameters
         ----------
         dgl_graph : DGL Graph
@@ -2033,8 +2033,8 @@ class DGL:
 
         Returns
         -------
-        edge data
-            The edge data.
+        edge resources
+            The edge resources.
 
         """
         return graph.edata
@@ -2058,7 +2058,7 @@ class DGL:
         cv_type : str , optional
             The desired cross-validation method. This can be "Holdout" or "K-Fold". It is case-insensitive. The default is "Holdout".
         split : list , optional
-            The desired split between training validation, and testing. [0.8, 0.1, 0.1] means that 80% of the data is used for training 10% of the data is used for validation, and 10% is used for testing. The default is [0.8, 0.1, 0.1].
+            The desired split between training validation, and testing. [0.8, 0.1, 0.1] means that 80% of the resources is used for training 10% of the resources is used for validation, and 10% is used for testing. The default is [0.8, 0.1, 0.1].
         k_folds : int , optional
             The desired number of k-folds. The default is 5.
         hl_widths : list , optional
@@ -2113,7 +2113,7 @@ class DGL:
     @staticmethod
     def OneHotEncode(item, categories):
         """
-        One-hot encodes the input item according to the input categories. One-Hot Encoding is a method to encode categorical variables to numerical data that Machine Learning algorithms can deal with. One-Hot encoding is most used during feature engineering for a ML Model. It converts categorical values into a new categorical column and assign a binary value of 1 or 0 to those columns. 
+        One-hot encodes the input item according to the input categories. One-Hot Encoding is a method to encode categorical variables to numerical resources that Machine Learning algorithms can deal with. One-Hot encoding is most used during feature engineering for a ML Model. It converts categorical values into a new categorical column and assign a binary value of 1 or 0 to those columns.
         
         Parameters
         ----------
@@ -2230,7 +2230,7 @@ class DGL:
     @staticmethod
     def GraphNodeData(graph):
         """
-        Returns the node data found in the input dgl_graph
+        Returns the node resources found in the input dgl_graph
 
         Parameters
         ----------
@@ -2239,8 +2239,8 @@ class DGL:
 
         Returns
         -------
-        node data
-            The node data.
+        node resources
+            The node resources.
 
         """
         return graph.ndata
@@ -2289,7 +2289,7 @@ class DGL:
         split : list , optional
             A list of length 3 containing the fraction to use for training, validation and test. If None, we will use [0.8, 0.1, 0.1]. The default is [0.8, 0.1, 0.1]
         randomState :  int or array_like , optional
-            Random seed used to initialize the pseudo-random number generator. Can be any integer between 0 and 2**32 - 1 inclusive, an array (or other sequence) of such integers, or None (the default). If seed is None, then RandomState will try to read data from /dev/urandom (or the Windows analogue) if available or seed from the clock otherwise.
+            Random seed used to initialize the pseudo-random number generator. Can be any integer between 0 and 2**32 - 1 inclusive, an array (or other sequence) of such integers, or None (the default). If seed is None, then RandomState will try to read resources from /dev/urandom (or the Windows analogue) if available or seed from the clock otherwise.
         
         Returns
         -------
@@ -2334,7 +2334,7 @@ class DGL:
             # graphs and labels come out as tuples, and so must be converted to lists.
             graphs, labels = list(graphs), list(labels)
 
-        #datasets = dgl.data.utils.split_dataset(dataset, frac_list=fracList, shuffle=shuffle, random_state=randomState)
+        #datasets = dgl.resources.modules.split_dataset(dataset, frac_list=fracList, shuffle=shuffle, random_state=randomState)
         graph_sublists = split_list(graphs, split)
         labels_sublists = split_list(labels, split)
         train_ds = None
@@ -2564,14 +2564,14 @@ class DGL:
              marginBottom=0,
              renderer = "notebook"):
         """
-        Shows the data in a plolty graph.
+        Shows the resources in a plolty graph.
 
         Parameters
         ----------
         data : list
-            The data to display.
+            The resources to display.
         labels : list
-            The labels to use for the data.
+            The labels to use for the resources.
         width : int , optional
             The desired width of the figure. The default is 950.
         height : int , optional
@@ -2768,7 +2768,7 @@ class DGL:
     @staticmethod
     def ModelData(model):
         """
-        Returns the data of the model
+        Returns the resources of the model
 
         Parameters
         ----------
@@ -2778,7 +2778,7 @@ class DGL:
         Returns
         -------
         dict
-            A dictionary containing the model data. The keys in the dictionary are:
+            A dictionary containing the model resources. The keys in the dictionary are:
             'Model Type'
             'Optimizer'
             'CV Type'
@@ -2880,19 +2880,19 @@ class DGL:
     @staticmethod
     def DataExportToCSV(data, path, overwrite=False):
         """
-        Exports the input data to a CSV file
+        Exports the input resources to a CSV file
 
         Parameters
         ----------
         data : dict
-            The input data. See Data(model)
+            The input resources. See Data(model)
         overwrite : bool , optional
             If set to True, previous saved results files are overwritten. Otherwise, the new results are appended to the previously saved files. The default is False.
 
         Returns
         -------
         bool
-            True if the data is saved correctly to a CSV file. False otherwise.
+            True if the resources is saved correctly to a CSV file. False otherwise.
 
         """
         from topologicpy.Helper import Helper
@@ -3064,7 +3064,7 @@ class DGL:
         d2 = Helper.Iterate(d2)
         d2 = Helper.Transpose(d2)
     
-        data = {'TimeStamp': "UTC-"+str(utcnow.year)+"-"+str(utcnow.month)+"-"+str(utcnow.day)+"-"+str(utcnow.hour)+"-"+str(utcnow.minute)+"-"+str(utcnow.second),
+        resources = {'TimeStamp': "UTC-"+str(utcnow.year)+"-"+str(utcnow.month)+"-"+str(utcnow.day)+"-"+str(utcnow.hour)+"-"+str(utcnow.minute)+"-"+str(utcnow.second),
                 'Duration': [duration],
                 'Optimizer': [regressor.hparams.optimizer_str],
                 'CV Type': [regressor.hparams.cv_type],
@@ -3086,7 +3086,7 @@ class DGL:
                 df.to_csv(regressor.hparams.results_path, mode='w+', index = False, header=True)
             else:
                 df.to_csv(regressor.hparams.results_path, mode='a', index = False, header=False)
-        return data
+        return resources
     '''
 
     @staticmethod

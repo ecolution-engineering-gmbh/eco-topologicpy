@@ -948,15 +948,15 @@ class Vertex():
             The influence of the adjacent points is inversely proportional to their distance from the input point.
 
             Args:
-                data_points (list): A list of tuples, each representing a data point in 3D space as (x, y, z, value).
-                                    The 'value' represents the value associated with that data point.
+                data_points (list): A list of tuples, each representing a resources point in 3D space as (x, y, z, value).
+                                    The 'value' represents the value associated with that resources point.
                 point (tuple): A tuple representing the point in 3D space as (x, y, z) for which we want to interpolate a value.
                 n (int): The number of nearest points to consider for interpolation.
 
             Returns:
                 The interpolated value for the input point.
             """
-            # Calculate the distances between the input point and all data points
+            # Calculate the distances between the input point and all resources points
             distances = [(distance(p[:3], point), p[3]) for p in data_points]
 
             # Sort the distances in ascending order

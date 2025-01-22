@@ -123,8 +123,8 @@ class CustomGraphDataset(Dataset):
 
         Parameters:
         - root: Root directory of the dataset (used only if data_list is None)
-        - data_list: List of preprocessed data objects (used if provided)
-        - indices: List of indices to select a subset of the data
+        - data_list: List of preprocessed resources objects (used if provided)
+        - indices: List of indices to select a subset of the resources
         - node_level: Boolean flag indicating if the dataset is node-level
         - graph_level: Boolean flag indicating if the dataset is graph-level
         - node_attr_key: Key for node attributes
@@ -139,9 +139,9 @@ class CustomGraphDataset(Dataset):
         self.edge_attr_key = edge_attr_key
 
         if data_list is not None:
-            self.data_list = data_list  # Use the provided data list
+            self.data_list = data_list  # Use the provided resources list
         elif root is not None:
-            # Load and process data from root directory if data_list is not provided
+            # Load and process resources from root directory if data_list is not provided
             self.graph_df = pd.read_csv(os.path.join(root, 'graphs.csv'))
             self.nodes_df = pd.read_csv(os.path.join(root, 'nodes.csv'))
             self.edges_df = pd.read_csv(os.path.join(root, 'edges.csv'))
@@ -287,11 +287,11 @@ class CustomGraphDataset(Dataset):
 #             # elif self.node_level:
 #             #     y = torch.tensor(graph_nodes['label'].values, dtype=torch.long)
 
-#             data = Data(x=x, edge_index=edge_index, y=y)
+#             resources = Data(x=x, edge_index=edge_index, y=y)
 #             if edge_attr is not None:
-#                 data.edge_attr = edge_attr
+#                 resources.edge_attr = edge_attr
 
-#             data_list.append(data)
+#             data_list.append(resources)
 
 #         return data_list
 
@@ -318,7 +318,7 @@ class _Hparams:
             An int value in the range of 2 to X to define the number of k-folds for cross-validation. Default is 5.
         split : list
             A list of three item in the range of 0 to 1 to define the split of train,
-            validate, and test data. A default value of [0.8,0.1,0.1] means 80% of data will be
+            validate, and test resources. A default value of [0.8,0.1,0.1] means 80% of resources will be
             used for training, 10% will be used for validation, and the remaining 10% will be used for training
         hl_widths : list
             List of hidden neurons for each layer such as [32] will mean
@@ -332,7 +332,7 @@ class _Hparams:
             to define a set of samples to be used for training and testing in 
             each step of an epoch
         epochs : int
-            An epoch means training the neural network with all the training data for one cycle. In an epoch, we use all of the data exactly once. A forward pass and a backward pass together are counted as one pass
+            An epoch means training the neural network with all the training resources for one cycle. In an epoch, we use all of the resources exactly once. A forward pass and a backward pass together are counted as one pass
         use_GPU : use the GPU. Otherwise, use the CPU
         input_type : str
             selects the input_type of model such as graph, node or edge
@@ -476,7 +476,7 @@ class _GraphRegressorHoldout:
 
         # Run the training loop for defined number of epochs
         for _ in tqdm(range(self.hparams.epochs), desc='Epochs', total=self.hparams.epochs, leave=False):
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for data in tqdm(self.train_dataloader, desc='Training', leave=False):
                 data = data.to(self.device)
                 # Make sure the model is in training mode
@@ -732,7 +732,7 @@ class _GraphClassifierKFold:
             train_subsampler = torch.utils.data.SubsetRandomSampler(train_ids)
             validate_subsampler = torch.utils.data.SubsetRandomSampler(validate_ids)
 
-            # Define data loaders for training and testing data in this fold
+            # Define resources loaders for training and testing resources in this fold
             self.train_dataloader = DataLoader(self.trainingDataset, sampler=train_subsampler, 
                                                 batch_size=self.hparams.batch_size,
                                                 drop_last=False)
@@ -747,7 +747,7 @@ class _GraphClassifierKFold:
                 temp_loss_list = []
                 temp_acc_list = []
 
-                # Iterate over the DataLoader for training data
+                # Iterate over the DataLoader for training resources
                 for data in tqdm(self.train_dataloader, desc='Training', leave=False):
                     data = data.to(self.device)
                     # Make sure the model is in training mode
@@ -918,7 +918,7 @@ class _GraphClassifierHoldout:
             temp_acc_list = []
             # Make sure the model is in training mode
             self.model.train()
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for data in tqdm(self.train_dataloader, desc='Training', leave=False):
                 data = data.to(self.device)
 
@@ -1063,7 +1063,7 @@ class _NodeClassifierHoldout:
         for _ in tqdm(range(self.hparams.epochs), desc='Epochs', initial=1, leave=False):
             temp_loss_list = []
             temp_acc_list = []
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for data in tqdm(self.train_dataloader, desc='Training', leave=False):
                 data = data.to(self.device)
                 # Make sure the model is in training mode
@@ -1214,7 +1214,7 @@ class _NodeRegressorHoldout:
 
         # Run the training loop for defined number of epochs
         for _ in tqdm(range(self.hparams.epochs), desc='Epochs', total=self.hparams.epochs, leave=False):
-            # Iterate over the DataLoader for training data
+            # Iterate over the DataLoader for training resources
             for data in tqdm(self.train_dataloader, desc='Training', leave=False):
                 data = data.to(self.device)
                 # Make sure the model is in training mode
@@ -1347,7 +1347,7 @@ class _NodeClassifierKFold:
             train_subsampler = torch.utils.data.SubsetRandomSampler(train_ids)
             validate_subsampler = torch.utils.data.SubsetRandomSampler(validate_ids)
 
-            # Define data loaders for training and testing data in this fold
+            # Define resources loaders for training and testing resources in this fold
             self.train_dataloader = DataLoader(self.trainingDataset, sampler=train_subsampler, 
                                                 batch_size=self.hparams.batch_size,
                                                 drop_last=False)
@@ -1362,7 +1362,7 @@ class _NodeClassifierKFold:
                 temp_loss_list = []
                 temp_acc_list = []
 
-                # Iterate over the DataLoader for training data
+                # Iterate over the DataLoader for training resources
                 for data in tqdm(self.train_dataloader, desc='Training', leave=False):
                     data = data.to(self.device)
                     # Make sure the model is in training mode
@@ -1753,7 +1753,7 @@ class PyG:
         cv_type : str , optional
             The desired cross-validation method. This can be "Holdout" or "K-Fold". It is case-insensitive. The default is "Holdout".
         split : list , optional
-            The desired split between training validation, and testing. [0.8, 0.1, 0.1] means that 80% of the data is used for training 10% of the data is used for validation, and 10% is used for testing. The default is [0.8, 0.1, 0.1].
+            The desired split between training validation, and testing. [0.8, 0.1, 0.1] means that 80% of the resources is used for training 10% of the resources is used for validation, and 10% is used for testing. The default is [0.8, 0.1, 0.1].
         k_folds : int , optional
             The desired number of k-folds. The default is 5.
         hl_widths : list , optional
@@ -1942,7 +1942,7 @@ class PyG:
     @staticmethod
     def ModelData(model):
         """
-        Returns the data of the model
+        Returns the resources of the model
 
         Parameters
         ----------
@@ -1952,7 +1952,7 @@ class PyG:
         Returns
         -------
         dict
-            A dictionary containing the model data. The keys in the dictionary are:
+            A dictionary containing the model resources. The keys in the dictionary are:
             'Model Type'
             'Optimizer'
             'CV Type'
@@ -2050,14 +2050,14 @@ class PyG:
              marginBottom=0,
              renderer = "notebook"):
         """
-        Shows the data in a plolty graph.
+        Shows the resources in a plolty graph.
 
         Parameters
         ----------
         data : list
-            The data to display.
+            The resources to display.
         labels : list
-            The labels to use for the data.
+            The labels to use for the resources.
         width : int , optional
             The desired width of the figure. The default is 950.
         height : int , optional
@@ -2167,7 +2167,7 @@ class PyG:
         predicted : list
             The input list of predicts labels.
         normalized : bool , optional
-            If set to True, the returned data will be normalized (proportion of 1). Otherwise, actual numbers are returned. The default is False.
+            If set to True, the returned resources will be normalized (proportion of 1). Otherwise, actual numbers are returned. The default is False.
 
         Returns
         -------

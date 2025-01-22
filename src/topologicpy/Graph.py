@@ -2086,7 +2086,7 @@ class Graph:
             graph_labels.append(row[graphLabelHeader])
             graph_features.append(row[graphFeaturesHeader])
 
-        vertices_ds = [] # A list to hold the vertices data structures until we can build the actual graphs
+        vertices_ds = [] # A list to hold the vertices resources structures until we can build the actual graphs
         # Iterate through the grouped nodes DataFrames
         for graph_id, group_node_df in grouped_nodes:
             vertices = []
@@ -2143,7 +2143,7 @@ class Graph:
                     if not silent:
                         print("Graph.ByCSVPath - Warning: Failed to create and add a vertex to the list of vertices.")
             vertices_ds.append(vertices)
-        edges_ds = [] # A list to hold the vertices data structures until we can build the actual graphs
+        edges_ds = [] # A list to hold the vertices resources structures until we can build the actual graphs
         # Access specific columns within the grouped DataFrame
         for graph_id, group_edge_df in grouped_edges:
             vertices = vertices_ds[graph_id]
@@ -2875,7 +2875,7 @@ class Graph:
     @staticmethod
     def ByMeshData(vertices, edges, vertexDictionaries=None, edgeDictionaries=None, tolerance=0.0001):
         """
-        Creates a graph from the input mesh data
+        Creates a graph from the input mesh resources
 
         Parameters
         ----------
@@ -2972,11 +2972,11 @@ class Graph:
         # Create TopologicPy vertices for each node in the NetworkX graph
         vertices = []
         for node, data in nxGraph.nodes(data=True):
-            # Attempt to get X, Y, Z from the node data
+            # Attempt to get X, Y, Z from the node resources
             x = round(data.get(xKey, random.uniform(*range)), mantissa)
             y = round(data.get(yKey, random.uniform(*range)), mantissa)
             z = round(data.get(zKey, 0), mantissa) # If there are no Z values, this is probably a flat graph.
-            # Create a TopologicPy vertex with the node data dictionary
+            # Create a TopologicPy vertex with the node resources dictionary
             vertex = Vertex.ByCoordinates(x,y,z)
             cleaned_values = []
             for value in data.values():
@@ -2995,7 +2995,7 @@ class Graph:
             start_vertex = nx_to_topologic_vertex[u]
             end_vertex = nx_to_topologic_vertex[v]
 
-            # Create a TopologicPy edge with the edge data dictionary
+            # Create a TopologicPy edge with the edge resources dictionary
             edge_dict = Dictionary.ByKeysValues(list(data.keys()), list(data.values()))
             edge = Edge.ByVertices([start_vertex, end_vertex], tolerance=tolerance)
             edge = Topology.SetDictionary(edge, edge_dict)
@@ -5846,13 +5846,13 @@ class Graph:
             The dictionary key where the edge train, validate, test category is to be found. The value should be 0 for train
             1 for validate, and 2 for test. If no key is found, the ratio of train/validate/test will be used. The default is "mask".
         edgeTrainRatio : float , optional
-            The desired ratio of the edge data to use for training. The number must be between 0 and 1. The default is 0.8 which means 80% of the data will be used for training.
+            The desired ratio of the edge resources to use for training. The number must be between 0 and 1. The default is 0.8 which means 80% of the resources will be used for training.
             This value is ignored if an edgeMaskKey is foud.
         edgeValidateRatio : float , optional
-            The desired ratio of the edge data to use for validation. The number must be between 0 and 1. The default is 0.1 which means 10% of the data will be used for validation.
+            The desired ratio of the edge resources to use for validation. The number must be between 0 and 1. The default is 0.1 which means 10% of the resources will be used for validation.
             This value is ignored if an edgeMaskKey is foud.
         edgeTestRatio : float , optional
-            The desired ratio of the edge data to use for testing. The number must be between 0 and 1. The default is 0.1 which means 10% of the data will be used for testing.
+            The desired ratio of the edge resources to use for testing. The number must be between 0 and 1. The default is 0.1 which means 10% of the resources will be used for testing.
             This value is ignored if an edgeMaskKey is foud.
         bidirectional : bool , optional
             If set to True, a reversed edge will also be saved for each edge in the graph. Otherwise, it will not. The default is True.
@@ -5878,13 +5878,13 @@ class Graph:
             The dictionary key where the node train, validate, test category is to be found. The value should be 0 for train
             1 for validate, and 2 for test. If no key is found, the ratio of train/validate/test will be used. The default is "mask".
         nodeTrainRatio : float , optional
-            The desired ratio of the node data to use for training. The number must be between 0 and 1. The default is 0.8 which means 80% of the data will be used for training.
+            The desired ratio of the node resources to use for training. The number must be between 0 and 1. The default is 0.8 which means 80% of the resources will be used for training.
             This value is ignored if an nodeMaskKey is foud.
         nodeValidateRatio : float , optional
-            The desired ratio of the node data to use for validation. The number must be between 0 and 1. The default is 0.1 which means 10% of the data will be used for validation.
+            The desired ratio of the node resources to use for validation. The number must be between 0 and 1. The default is 0.1 which means 10% of the resources will be used for validation.
             This value is ignored if an nodeMaskKey is foud.
         nodeTestRatio : float , optional
-            The desired ratio of the node data to use for testing. The number must be between 0 and 1. The default is 0.1 which means 10% of the data will be used for testing.
+            The desired ratio of the node resources to use for testing. The number must be between 0 and 1. The default is 0.1 which means 10% of the resources will be used for testing.
             This value is ignored if an nodeMaskKey is foud.
         mantissa : int , optional
             The desired length of the mantissa. The default is 6.
@@ -8201,7 +8201,7 @@ class Graph:
                  mantissa: int = 6,
                  tolerance: float = 0.0001):
         """
-        Converts the input graph into JSON data.
+        Converts the input graph into JSON resources.
 
         Parameters
         ----------
@@ -8237,7 +8237,7 @@ class Graph:
         Returns
         -------
         dict
-            The JSON data
+            The JSON resources
 
         """
         from topologicpy.Vertex import Vertex
@@ -8318,7 +8318,7 @@ class Graph:
                    sortKeys=False,
                    mantissa=6):
         """
-        Converts the input graph into JSON data.
+        Converts the input graph into JSON resources.
 
         Parameters
         ----------
@@ -8852,7 +8852,7 @@ class Graph:
     @staticmethod
     def MeshData(graph, tolerance: float = 0.0001):
         """
-        Returns the mesh data of the input graph.
+        Returns the mesh resources of the input graph.
 
         Parameters
         ----------
@@ -8864,7 +8864,7 @@ class Graph:
         Returns
         -------
         dict
-            The python dictionary of the mesh data of the input graph. The keys in the dictionary are:
+            The python dictionary of the mesh resources of the input graph. The keys in the dictionary are:
             'vertices' : The list of [x, y, z] coordinates of the vertices.
             'edges' : the list of [i, j] indices into the vertices list to signify and edge that connects vertices[i] to vertices[j].
             'vertexDictionaries' : The python dictionaries of the vertices (in the same order as the list of vertices).
@@ -9715,7 +9715,7 @@ class Graph:
                 net.add_edge(svi, evi, weight=w, label=edge_label)
         net.inherit_edge_colors(False)
         
-        # add neighbor data to node hover data and compute vertexSize
+        # add neighbor resources to node hover resources and compute vertexSize
         if showNeighbours == True or not vertexSizeKey == None:
             for i, node in enumerate(net.nodes):
                 if showNeighbours == True:

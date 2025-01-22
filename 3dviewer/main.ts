@@ -84,7 +84,7 @@ Deno.serve(async (req: Request) => {
   if (req.method === 'POST' && pathname.startsWith('/upload/') && pathname.length > 8) {
     const id = pathname.substr(8);
     try {
-      const formData = await req.formData(); // Parse multipart form data
+      const formData = await req.formData(); // Parse multipart form resources
       const files = [];
       let fileIdx = 0;
       for await (const [key, value] of formData.entries()) {
