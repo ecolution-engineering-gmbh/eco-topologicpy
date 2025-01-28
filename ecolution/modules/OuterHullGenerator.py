@@ -40,23 +40,18 @@ def create_outer_hull(polygons, thickness=2.7, hull_type="concave", k=3):
     ... ]
     hull_cell = create_outer_hull(polygons, thickness=3.0, hull_type="concave", k=3)
     """
-    # 1) Collect all polygon vertices
     vertex_list = []
     for polygon in polygons:
         for (x, y) in polygon:
             vertex_list.append(Vertex.ByCoordinates(x, y, 0))
 
-    # 2) Create a Cluster of all vertices
     cluster_of_vertices = Cluster.ByTopologies(vertex_list)
 
-    # 3) Compute the 2D hull wire
     if hull_type.lower() == "concave":
         outer_wire = Wire.ConcaveHull(cluster_of_vertices, k=k)
     else:
-        # default to convex if anything else
         outer_wire = Wire.ConvexHull(cluster_of_vertices)
 
-    # 4) Convert wire to face and extrude to a shell
     outer_face = Face.ByWire(outer_wire)
     outer_shell = Cell.ByThickenedFace(
         face=outer_face,

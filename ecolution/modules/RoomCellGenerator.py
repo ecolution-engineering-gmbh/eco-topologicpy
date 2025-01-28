@@ -37,7 +37,6 @@ def create_room_cells(polygons, room_height=2.7):
     for idx, polygon in enumerate(polygons):
         vertex_list = [Vertex.ByCoordinates(x, y, 0) for (x, y) in polygon]
         face = Face.ByVertices(vertex_list)
-        # Extrude via ByThickenedFace (normal direction, upward)
         cell = Cell.ByThickenedFace(
             face=face,
             thickness=room_height,
